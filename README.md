@@ -150,4 +150,26 @@ book 01        genesis
 <b>SOLUTION:</b>
 <b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'aeiou' '\012' | sort | uniq -c</b>
 
+<b>Exercise 3. Sorting Exercises</b>
+<b>Sort the words in Genesis by freq</b>
+<b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'a-z' '\012' | sort | uniq -c | sort -nr &gt; genesis_freq.hist</b>
+
+<b>Sort them by rhyming order</b>
+<b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'a-z' '\012' | sort | uniq -c | rev | sort | rev | sed 10q</b>
+      1 
+    341 a
+      3 sheba
+     11 beersheba
+      1 seba
+      1 kirjatharba
+      8 sea
+      4 yea
+      1 lasha
+      1 mesha
+      
+<b>Hint:</b>
+<b>$ echo hello world | rev</b>
+dlrow olleh
+<b>$ echo hello world | rev | rev</b>
+hello world
 </pre> 
