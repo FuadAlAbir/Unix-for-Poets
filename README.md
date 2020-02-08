@@ -211,4 +211,65 @@ $ paste genesis.words genesis.nextwords genesis.afternextwords | sort | uniq -c 
     rm $$words $$nextwords $$next2words
 
 <b>$ sh trigram.sh < genesis.txt > new.trigrams</b>
+
+
+<b>Exercise 6. grep & egrep</b>
+$ grep 'the land of' genesis.txt 
+[figure]
+
+$ grep 'the land of' genesis.txt | sh trigram.sh | sort -nr | sed 5q
+     93 the     land    of
+     47 in      the     land
+     30 land    of      egypt
+     24 land    of      canaan
+     11 of      the     land
+     
+$ grep 'and he said' genesis.txt | sh trigram.sh | sort -nr | sed 5q
+     15 and     he      said
+      4 said    unto    him
+      2 son     and     he
+      2 said    here    am
+      2 my      son     and
+      
+$ grep 'in the name'    : find lines containing 'in the name'
+$ grep '^the'           : find lines starting with 'the'
+$ grep 'ing$'           : find lines ending with 'ing'
+$ grep ’ˆ[A–Z]*$’       : find lines with all uppercase
+$ grep '[^A-Z]'         : find lines with non uppercase
+
+$ grep –i ’[aeiou].*[aeiou]’              : lines with two or more vowels
+$ grep –i ’ˆ[ˆaeiou]*[aeiou][ˆaeiou]*$’   : lines  with exactly one vowel 
+
+a               : match the letter ‘‘a’’
+[a–z]           : match any lowercase letter
+[A–Z]           : match any uppercase letter
+[0–9]           : match any digit
+[0123456789]    : match any digit
+[aeiouAEIUO]    : match any vowel
+
+[ˆaeiouAEIOU]   : match any letter but a vowel
+.               : match any character
+ˆ               : beginning of line
+$               : end of line
+x*              : any number of x
+x+              : one or more of x (egrep only)
+x|y             : x or y (egrep only)
+(x)             : override precedence rules (egrep only)
+
+-v : not containing
+-c : count
+-i : ignore case
+
+<b>Grep Exercise</b>
+1. How many uppercase words are there in Genesis? Lowercase?
+2. How many 4-letter words?
+3. Are there any words with no vowels?
+4. Find ‘‘1-syllable’’ words (words with exactly one vowel)
+5. Find ‘‘2-syllable’’ words (words with exactly two vowels)
+6. Some words with two orthographic vowels have only one phonological vowel.
+    Delete words ending with a silent ‘‘e’’ from the 2-syllable list.
+    Delete diphthongs (sequences of two vowels in a row).
+7. Find verses in Genesis with the word ‘‘light.’’
+    How many have two or more instances of ‘‘light’’?
+    Three or more? Exactly two?
 </pre> 
