@@ -198,17 +198,17 @@ visit   you
 <b>$ paste genesis.words genesis.nextwords | sort | uniq -c | sort -nr &gt; genesis.bigrams</b>
 
 <b>Exercise 4.1 Trigrams</b>
-$ tail +2 genesis.nextwords &gt; genesis.afternextwords
-$ paste genesis.words genesis.nextwords genesis.afternextwords | sort | uniq -c | sort -nr &gt; genesis.trigrams
+<b>$ tail +2 genesis.nextwords &gt; genesis.afternextwords
+$ paste genesis.words genesis.nextwords genesis.afternextwords | sort | uniq -c | sort -nr &gt; genesis.trigrams</b>
 
 
 <b>Exercise 5. Shell Script</b>
-trigram.sh
-tr 'A-Z' 'a-z' | tr -sc 'a-z' '\012' > $$words 
+[trigram.sh]
+<b>tr 'A-Z' 'a-z' | tr -sc 'a-z' '\012' > $$words 
 tail +2 $$words > $$nextwords
 tail +3 $$words > $$next2words
 paste $$words $$nextwords $$next2words | sort | uniq -c | sort -nr
-rm $$words $$nextwords $$next2words
+rm $$words $$nextwords $$next2words</b>
 
-$ sh trigram.sh < genesis.txt > new.trigrams
+<b>$ sh trigram.sh < genesis.txt > new.trigrams</b>
 </pre> 
