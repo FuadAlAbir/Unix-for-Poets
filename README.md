@@ -1,8 +1,8 @@
 <pre>
-Unix fox Poets
+<b>Unix fox Poets</b>
 Source: https://www.cs.upc.edu/~padro/Unixforpoets.pdf
 
-Exercises:
+<b>Exercises:</b>
 1. Count words.
 2. Sort words. [ascii, dictionary, rhyme]
 3. Extract info from dictionary.
@@ -10,7 +10,7 @@ Exercises:
 5. Concordance.
 
 
-Tools:
+<b>Tools:</b>
 * grep (search for pattern - re)
 * sort
 * uniq -c (count duplicates)
@@ -23,7 +23,7 @@ Tools:
 * comm
 * join
 
-Glue: | &lt; &gt;
+<b>Glue:</b> | &lt; &gt;
 
 
 <b>Exercise 0. File READ-WRITE</b>
@@ -83,8 +83,7 @@ a
 <b>$ tr -sc 'A-Za-z' '\012' &lt; genesis.txt | sort | uniq -c</b>
 
 
-<b>Exercise 2. More Counting Exercises</b>
-<b>2.1 Merge the counts for upper and lower case</b>
+<b>Exercise 2.1 More Counting: Merge the counts for upper and lower case</b>
 
 <b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | sed 10q</b>
 book 01        genesis
@@ -113,7 +112,7 @@ book 01        genesis
 <b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'a-z' '\012' | sort | uniq -c</b>
 
 
-<b>2.2 Count sequences of vowels</b>
+<b>Exercise 2.2 More Counting: Count sequences of vowels</b>
 <b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'aeiou' '\012' | sort | uniq -c | sed 100q</b>
       1 
   12795 a
@@ -175,4 +174,32 @@ book 01        genesis
 dlrow olleh
 <b>$ echo hello world | rev | rev</b>
 hello world
+
+
+<b>Exercise 4. Bigrams (word pair)</b>
+Algorithm:
+    ~ tokenize by word
+    ~ print word i and word i + 1 on the same line
+    ~ count
+    
+<b>$ tr -sc ’A-Za-z’ ’\012’ < genesis > genesis.words</b>
+<b>$ tail +2 genesis.words > genesis.nextwords</b>
+<b>$ paste genesis.words genesis.nextwords</b>
+...
+the     children
+children        of
+of      israel
+israel  saying
+saying  god
+god     will
+will    surely
+surely  visit
+visit   you
+...
+<b>$ paste genesis.words genesis.nextwords | sort | uniq -c | sort -nr > genesis.bigrams</b>
+
+<b>Exercise 4.1 Trigrams</b>
+$ tail +2 genesis.nextwords > genesis.afternextwords
+$ paste genesis.words genesis.nextwords genesis.afternextwords | sort | uniq -c | sort -nr > genesis.trigrams
+
 </pre> 
