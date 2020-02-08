@@ -23,9 +23,18 @@ Tools:
 * comm
 * join
 
+<b>Exercise 0. File READ-WRITE</b>
+<b>Read the file genesis.txt & print first 10 lines.</b>
+<b>$ sed 10q < genesis.txt</b>
+
+<b>Do some operations and write the result in a file.</b>
+<b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'a-z' '\012' | sort | uniq -c &gt; word_count.txt</b>
+
+<b>Note that, &lt; is used for READ and &gt; is used for WRITE.</b>
+
 
 <b>Exercise 1. Count words in text</b>
-<b>$ sed 10q < genesis.txt</b>
+<b>$ sed 10q &lt; genesis.txt</b>
 Book 01        Genesis
 
 01:001:001 In the beginning God created the heaven and the earth.
