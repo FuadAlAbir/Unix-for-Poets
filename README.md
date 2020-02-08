@@ -204,11 +204,11 @@ $ paste genesis.words genesis.nextwords genesis.afternextwords | sort | uniq -c 
 
 <b>Exercise 5. Shell Script</b>
 [trigram.sh]
-<b>tr 'A-Z' 'a-z' | tr -sc 'a-z' '\012' > $$words 
-tail +2 $$words > $$nextwords
-tail +3 $$words > $$next2words
-paste $$words $$nextwords $$next2words | sort | uniq -c | sort -nr
-rm $$words $$nextwords $$next2words</b>
+    tr 'A-Z' 'a-z' | tr -sc 'a-z' '\012' > $$words 
+    tail +2 $$words > $$nextwords
+    tail +3 $$words > $$next2words
+    paste $$words $$nextwords $$next2words | sort | uniq -c | sort -nr
+    rm $$words $$nextwords $$next2words
 
 <b>$ sh trigram.sh < genesis.txt > new.trigrams</b>
 </pre> 
