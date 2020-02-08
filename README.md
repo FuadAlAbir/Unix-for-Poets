@@ -24,7 +24,7 @@ Tools:
 * join
 
 
-<b>Exercise 1: Count words in text</b>
+<b>Exercise 1. Count words in text</b>
 <b>$ sed 10q < genesis.txt</b>
 Book 01        Genesis
 
@@ -69,4 +69,76 @@ a
 
 <b>SOLUTION:</b>
 <b>$ tr -sc 'A-Za-z' '\012' &lt; genesis.txt | sort | uniq -c</b>
+
+
+<b>Exercise 2. More Counting Exercises</b>
+<b>2.1 Merge the counts for upper and lower case</b>
+
+<b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | sed 10q</b>
+book 01        genesis
+
+01:001:001 in the beginning god created the heaven and the earth.
+
+01:001:002 and the earth was without form, and void; and darkness was
+           upon the face of the deep. and the spirit of god moved upon
+           the face of the waters.
+
+01:001:003 and god said, let there be light: and there was light.
+
+<b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'a-z' '\012' | sort | uniq -c | sed 10q</b>
+      1 
+    341 a
+      3 abated
+      8 abel
+      1 abelmizraim
+      1 abidah
+      5 abide
+      1 abimael
+     24 abimelech
+      3 able
+
+<b>SOLUTION:</b>
+<b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'a-z' '\012' | sort | uniq -c</b>
+
+
+<b>2.2 Count sequences of vowels</b>
+<b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'aeiou' '\012' | sort | uniq -c | sed 100q</b>
+      1 
+  12795 a
+    150 aa
+     65 ae
+    793 ai
+     99 ao
+    277 au
+  16119 e
+    993 ea
+      1 eau
+    679 ee
+      8 eei
+    277 ei
+     78 eo
+     15 eou
+     24 eu
+      5 eue
+   6707 i
+     44 ia
+    266 ie
+    115 io
+      4 iou
+      1 iu
+   7953 o
+     90 oa
+     24 oe
+     57 oi
+      2 oii
+    276 oo
+   1254 ou
+   1868 u
+     20 ua
+     33 ue
+     62 ui
+     
+<b>SOLUTION:</b>
+<b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'aeiou' '\012' | sort | uniq -c</b>
+
 </pre> 
