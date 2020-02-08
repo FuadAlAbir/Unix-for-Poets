@@ -23,6 +23,9 @@ Tools:
 * comm
 * join
 
+Glue: | &lt; &gt;
+
+
 <b>Exercise 0. File READ-WRITE</b>
 <b>Read the file genesis.txt & print first 10 lines.</b>
 <b>$ sed 10q < genesis.txt</b>
