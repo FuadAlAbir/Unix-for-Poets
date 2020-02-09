@@ -28,46 +28,46 @@ Source: https://www.cs.upc.edu/~padro/Unixforpoets.pdf
 
 <b>Exercise 0. File READ-WRITE</b>
 <b>Read the file genesis.txt & print first 10 lines.</b>
-<b>$ sed 10q < genesis.txt</b>
+    <b>$ sed 10q < genesis.txt</b>
 
 <b>Do some operations and write the result in a file.</b>
-<b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'a-z' '\012' | sort | uniq -c &gt; word_count.txt</b>
+    <b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'a-z' '\012' | sort | uniq -c &gt; word_count.txt</b>
 
 <b>Note that, &lt; is used for READ and &gt; is used for WRITE.</b>
 
 
 <b>Exercise 1. Count words in text</b>
-<b>$ sed 10q &lt; genesis.txt</b>
-Book 01        Genesis
+    <b>$ sed 10q &lt; genesis.txt</b>
+    Book 01        Genesis
 
-01:001:001 In the beginning God created the heaven and the earth.
+    01:001:001 In the beginning God created the heaven and the earth.
 
-01:001:002 And the earth was without form, and void; and darkness was
-           upon the face of the deep. And the Spirit of God moved upon
-           the face of the waters.
+    01:001:002 And the earth was without form, and void; and darkness was
+            upon the face of the deep. And the Spirit of God moved upon
+            the face of the waters.
 
-01:001:003 And God said, Let there be light: and there was light.
+    01:001:003 And God said, Let there be light: and there was light.
 
-<b>$ tr -sc 'A-Za-z' '\012' &lt; genesis.txt | sed 10q</b>
+    <b>$ tr -sc 'A-Za-z' '\012' &lt; genesis.txt | sed 10q</b>
 
-Book
-Genesis
-In
-the
-beginning
-God
-created
-the
-heaven
+    Book
+    Genesis
+    In
+    the
+    beginning
+    God
+    created
+    the
+    heaven
 
-<b>$ tr -sc 'A-Za-z' '\012' &lt; genesis.txt | sort | sed 5q</b>
+    <b>$ tr -sc 'A-Za-z' '\012' &lt; genesis.txt | sort | sed 5q</b>
 
-a
-a
-a
-a
+    a
+    a
+    a
+    a
 
-<b>$ tr -sc 'A-Za-z' '\012' &lt; genesis.txt | sort | uniq -c | sed 10q</b>
+    <b>$ tr -sc 'A-Za-z' '\012' &lt; genesis.txt | sort | uniq -c | sed 10q</b>
       1 
     339 a
       2 A
@@ -80,23 +80,23 @@ a
       1 Abimael
 
 <b>SOLUTION:</b>
-<b>$ tr -sc 'A-Za-z' '\012' &lt; genesis.txt | sort | uniq -c</b>
+    <b>$ tr -sc 'A-Za-z' '\012' &lt; genesis.txt | sort | uniq -c</b>
 
 
 <b>Exercise 2.1 More Counting: Merge the counts for upper and lower case</b>
 
-<b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | sed 10q</b>
-book 01        genesis
+    <b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | sed 10q</b>
+    book 01        genesis
 
-01:001:001 in the beginning god created the heaven and the earth.
+    01:001:001 in the beginning god created the heaven and the earth.
 
-01:001:002 and the earth was without form, and void; and darkness was
-           upon the face of the deep. and the spirit of god moved upon
-           the face of the waters.
+    01:001:002 and the earth was without form, and void; and darkness was
+            upon the face of the deep. and the spirit of god moved upon
+            the face of the waters.
 
-01:001:003 and god said, let there be light: and there was light.
+    01:001:003 and god said, let there be light: and there was light.
 
-<b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'a-z' '\012' | sort | uniq -c | sed 10q</b>
+    <b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'a-z' '\012' | sort | uniq -c | sed 10q</b>
       1 
     341 a
       3 abated
@@ -109,11 +109,11 @@ book 01        genesis
       3 able
 
 <b>SOLUTION:</b>
-<b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'a-z' '\012' | sort | uniq -c</b>
+    <b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'a-z' '\012' | sort | uniq -c</b>
 
 
 <b>Exercise 2.2 More Counting: Count sequences of vowels</b>
-<b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'aeiou' '\012' | sort | uniq -c | sed 100q</b>
+    <b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'aeiou' '\012' | sort | uniq -c | sed 100q</b>
       1 
   12795 a
     150 aa
@@ -150,14 +150,14 @@ book 01        genesis
      62 ui
      
 <b>SOLUTION:</b>
-<b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'aeiou' '\012' | sort | uniq -c</b>
+    <b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'aeiou' '\012' | sort | uniq -c</b>
 
 <b>Exercise 3. Sorting Exercises</b>
 <b>Sort the words in Genesis by freq</b>
-<b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'a-z' '\012' | sort | uniq -c | sort -nr &gt; genesis_freq.hist</b>
+    <b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'a-z' '\012' | sort | uniq -c | sort -nr &gt; genesis_freq.hist</b>
 
 <b>Sort them by rhyming order</b>
-<b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'a-z' '\012' | sort | uniq -c | rev | sort | rev | sed 10q</b>
+    <b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'a-z' '\012' | sort | uniq -c | rev | sort | rev | sed 10q</b>
       1 
     341 a
       3 sheba
@@ -170,10 +170,10 @@ book 01        genesis
       1 mesha
       
 <b>Hint:</b>
-<b>$ echo hello world | rev</b>
-dlrow olleh
-<b>$ echo hello world | rev | rev</b>
-hello world
+    <b>$ echo hello world | rev</b>
+    dlrow olleh
+    <b>$ echo hello world | rev | rev</b>
+    hello world
 
 
 <b>Exercise 4. Bigrams (word pair)</b>
@@ -181,55 +181,55 @@ Algorithm:
     ~ tokenize by word
     ~ print word i and word i + 1 on the same line
     ~ count
-<b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'A-Za-z' '\012' &gt; genesis.words</b>
-<b>$ tail +2 genesis.words &gt; genesis.nextwords</b>
-<b>$ paste genesis.words genesis.nextwords</b>
-...
-the     children
-children        of
-of      israel
-israel  saying
-saying  god
-god     will
-will    surely
-surely  visit
-visit   you
-...
-<b>$ paste genesis.words genesis.nextwords | sort | uniq -c | sort -nr &gt; genesis.bigrams</b>
+    <b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'A-Za-z' '\012' &gt; genesis.words</b>
+    <b>$ tail +2 genesis.words &gt; genesis.nextwords</b>
+    <b>$ paste genesis.words genesis.nextwords</b>
+    ...
+    the     children
+    children        of
+    of      israel
+    israel  saying
+    saying  god
+    god     will
+    will    surely
+    surely  visit
+    visit   you
+    ...
+    <b>$ paste genesis.words genesis.nextwords | sort | uniq -c | sort -nr &gt; genesis.bigrams</b>
 
 <b>Exercise 4.1 Trigrams</b>
-<b>$ tail +2 genesis.nextwords &gt; genesis.afternextwords
-$ paste genesis.words genesis.nextwords genesis.afternextwords | sort | uniq -c | sort -nr &gt; genesis.trigrams</b>
+    <b>$ tail +2 genesis.nextwords &gt; genesis.afternextwords
+    $ paste genesis.words genesis.nextwords genesis.afternextwords | sort | uniq -c | sort -nr &gt; genesis.trigrams</b>
 
 
 <b>Exercise 5. Shell Script</b>
-[trigram.sh]
-    tr 'A-Z' 'a-z' | tr -sc 'a-z' '\012' &gt; $$words 
-    tail +2 $$words &gt; $$nextwords
-    tail +3 $$words &gt; $$next2words
-    paste $$words $$nextwords $$next2words | sort | uniq -c | sort -nr
-    rm $$words $$nextwords $$next2words
+    [trigram.sh]
+        tr 'A-Z' 'a-z' | tr -sc 'a-z' '\012' &gt; $$words 
+        tail +2 $$words &gt; $$nextwords
+        tail +3 $$words &gt; $$next2words
+        paste $$words $$nextwords $$next2words | sort | uniq -c | sort -nr
+        rm $$words $$nextwords $$next2words
 
-<b>$ sh trigram.sh &lt; genesis.txt &gt; new.trigrams</b>
+    <b>$ sh trigram.sh &lt; genesis.txt &gt; new.trigrams</b>
 
 
 <b>Exercise 6. grep & egrep</b>
-$ grep 'the land of' genesis.txt 
-[figure]
+    $ grep 'the land of' genesis.txt 
+    [figure]
 
-$ grep 'the land of' genesis.txt | sh trigram.sh | sort -nr | sed 5q
-     93 the     land    of
-     47 in      the     land
-     30 land    of      egypt
-     24 land    of      canaan
-     11 of      the     land
+    $ grep 'the land of' genesis.txt | sh trigram.sh | sort -nr | sed 5q
+        93 the     land    of
+        47 in      the     land
+        30 land    of      egypt
+        24 land    of      canaan
+        11 of      the     land
      
-$ grep 'and he said' genesis.txt | sh trigram.sh | sort -nr | sed 5q
-     15 and     he      said
-      4 said    unto    him
-      2 son     and     he
-      2 said    here    am
-      2 my      son     and
+    $ grep 'and he said' genesis.txt | sh trigram.sh | sort -nr | sed 5q
+       15 and     he      said
+        4 said    unto    him
+        2 son     and     he
+        2 said    here    am
+        2 my      son     and
       
 $ grep 'in the name'    : find lines containing 'in the name'
 $ grep '^the'           : find lines starting with 'the'
@@ -260,22 +260,26 @@ x|y             : x or y (egrep only)
 -c : count
 -i : ignore case
 
-<b>Grep Exercise</b>
+<b>Exercise</b>
 <b>1. How many uppercase words are there in Genesis? Lowercase?</b>
 <b># by token</b>
-<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -c '^[A-Z]'</b>
-5531
+	<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -c '^[A-Z]'</b>
+	5531
 <b># by type | -u to eliminate duplicates</b>
-<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | sort -u | grep -c '^[A-Z]'</b>
-634
+	<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | sort -u | grep -c '^[A-Z]'</b>
+	634
 <b># lowercase by token, we will consider tokens now on for this exercise.</b>
-<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -c '^[^A-Z]'</b>
-32991
+	<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -c '^[^A-Z]'</b>
+	32991
 
 <b>2. How many 4-letter words?</b>
     <b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep '^....'</b>
+    [figure]
     <b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep '....$'</b>
+    [figure]
     <b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep '^....$'</b>
+    [figure]
+
 <b>SOLUTION:</b>
     <b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -c '^....$'</b>
         9040
