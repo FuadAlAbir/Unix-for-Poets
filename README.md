@@ -273,15 +273,15 @@ x|y             : x or y (egrep only)
 32991
 
 <b>2. How many 4-letter words?</b>
-<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep '^....'</b>
-<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep '....$'</b>
-<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep '^....$'</b>
+    <b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep '^....'</b>
+    <b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep '....$'</b>
+    <b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep '^....$'</b>
 <b>SOLUTION:</b>
-<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -c '^....$'</b>
-9040
+    <b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -c '^....$'</b>
+        9040
 
-<b>3. Are there any words with no vowels?</b>
-<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*$' | sort | uniq -c</b>
+<b>3. Are there any words with no vowels?
+    $ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*$' | sort | uniq -c</b>
       1 
      80 by
       4 By
@@ -297,7 +297,7 @@ x|y             : x or y (egrep only)
       5 why
       3 Why
       
-<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -vi '[aeiou]' | sort | uniq -c</b>
+    <b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -vi '[aeiou]' | sort | uniq -c</b>
       1 
      80 by
       4 By
@@ -313,36 +313,38 @@ x|y             : x or y (egrep only)
       5 why
       3 Why
       
-<b>4. Find ‘‘1-syllable’’ words (words with exactly one vowel)</b>
-<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*$' | sort | uniq -c | sed 5q</b>
+<b>4. Find ‘‘1-syllable’’ words (words with exactly one vowel)
+    $ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*$' | sort | uniq -c | sed 5q</b>
     339 a
       2 A
       1 add
     245 all
       5 All
       
-<b>5. Find ‘‘2-syllable’’ words (words with exactly two vowels)</b>
-<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*[aeoiu][^aeiou]*$' | sort | uniq -c | sed 5q</b>
+<b>5. Find ‘‘2-syllable’’ words (words with exactly two vowels)
+    $ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*[aeoiu][^aeiou]*$' | sort | uniq -c | sed 5q</b>
       8 Abel
       3 able
      59 Abram
       1 absent
       1 Accad
       
-<b>6. Some words with two orthographic vowels have only one phonological vowel.</b>
-    <b>Delete words ending with a silent ‘‘e’’ from the 2-syllable list.</b>
-    <b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*[aeoiu][^aeiou]*$' | grep -v 'ee$' | sort | uniq -c</b>
+<b>
+6.0 Some words with two orthographic vowels have only one phonological vowel.
+6.1 Delete words ending with a silent ‘‘e’’ from the 2-syllable list.
+    $ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*[aeoiu][^aeiou]*$' | grep -v 'ee$' | sort | uniq -c
     
-    <b>Delete diphthongs (sequences of two vowels in a row).</b>
-    <b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*[aeoiu][^aeiou]*$' | grep -v '[aeiou][aeiou]' | sort | uniq -c</b>
+6.2 Delete diphthongs (sequences of two vowels in a row).
+    $ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*[aeoiu][^aeiou]*$' | grep -v '[aeiou][aeiou]' | sort | uniq -c</b>
     
-<b>7. Find verses in Genesis with the word ‘‘light.’’
+<b>
+7.0 Find verses in Genesis with the word ‘‘light.’’
     $ grep 'light' genesis.txt
-    How many have two or more instances of ‘‘light’’?
+7.1 How many have two or more instances of ‘‘light’’?
     $ grep -c 'light.*light' genesis.txt
-    Three or more?
+7.2 Three or more?
     $ grep -c 'light.*light.*light' genesis.txt
-    Exactly two?
+7.3 Exactly two?
     $ grep 'light.*light' genesis.txt | grep -vc 'light.*light.*light'</b>
     
 </pre> 
