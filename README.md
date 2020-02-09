@@ -1,4 +1,4 @@
-<pre>
+```
 <b>Unix fox Poets</b>
 Source: https://www.cs.upc.edu/~padro/Unixforpoets.pdf
 
@@ -9,12 +9,6 @@ Source: https://www.cs.upc.edu/~padro/Unixforpoets.pdf
 4. Ngram Statistics.
 5. Concordance.
 
-```diff
-+ text in red
-! text in red
-- text in red
-! text in red
-```
 <span style="color:red;">
 <b>Tools:</b>
 * grep (search for pattern - re)
@@ -358,4 +352,4 @@ x|y             : x or y (egrep only)
 7.3 Exactly two?
     $ grep 'light.*light' genesis.txt | grep -vc 'light.*light.*light'</b>
     
-</pre> 
+```
