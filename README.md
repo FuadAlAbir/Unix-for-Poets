@@ -9,7 +9,13 @@ Source: https://www.cs.upc.edu/~padro/Unixforpoets.pdf
 4. Ngram Statistics.
 5. Concordance.
 
-
+```diff
++ text in red
+! text in red
+- text in red
+! text in red
+```
+<span style="color:red;">
 <b>Tools:</b>
 * grep (search for pattern - re)
 * sort
@@ -21,7 +27,8 @@ Source: https://www.cs.upc.edu/~padro/Unixforpoets.pdf
 * cut
 * paste
 * comm
-* join
+* join</span>
+
 
 <b>Glue:</b> | &lt; &gt;
 
