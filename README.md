@@ -182,6 +182,7 @@ Algorithm:
     ~ tokenize by word
     ~ print word i and word i + 1 on the same line
     ~ count
+    
     <b>$ tr 'A-Z' 'a-z' &lt; genesis.txt | tr -sc 'A-Za-z' '\012' &gt; genesis.words</b>
     <b>$ tail +2 genesis.words &gt; genesis.nextwords</b>
     <b>$ paste genesis.words genesis.nextwords</b>
@@ -200,8 +201,8 @@ Algorithm:
 
 <b>Exercise 4.1 Trigrams</b>
     <b>$ tail +2 genesis.nextwords &gt; genesis.afternextwords
-    $ paste genesis.words genesis.nextwords genesis.afternextwords | sort | uniq -c | sort -nr
-        &gt; genesis.trigrams</b>
+    $ paste genesis.words genesis.nextwords genesis.afternextwords | sort | uniq -c |
+        sort -nr &gt; genesis.trigrams</b>
 
 
 <b>Exercise 5. Shell Script</b>
@@ -320,8 +321,8 @@ x|y             : x or y (egrep only)
       3 Why
       
 <b>4. Find ‘‘1-syllable’’ words (words with exactly one vowel)
-    $ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*$'
-        | sort | uniq -c | sed 5q</b>
+    $ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*$' |
+        sort | uniq -c | sed 5q</b>
     339 a
       2 A
       1 add
@@ -329,8 +330,8 @@ x|y             : x or y (egrep only)
       5 All
       
 <b>5. Find ‘‘2-syllable’’ words (words with exactly two vowels)
-    $ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*[aeoiu][^aeiou]*$'
-        | sort | uniq -c | sed 5q</b>
+    $ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*[aeoiu][^aeiou]*$' |
+        sort | uniq -c | sed 5q</b>
       8 Abel
       3 able
      59 Abram
@@ -340,12 +341,12 @@ x|y             : x or y (egrep only)
 <b>
 6.0 Some words with two orthographic vowels have only one phonological vowel.
 6.1 Delete words ending with a silent ‘‘e’’ from the 2-syllable list.
-    $ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*[aeoiu][^aeiou]*$'
-        | grep -v 'ee$' | sort | uniq -c
+    $ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*[aeoiu][^aeiou]*$' |
+        grep -v 'ee$' | sort | uniq -c
     
 6.2 Delete diphthongs (sequences of two vowels in a row).
-    $ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*[aeoiu][^aeiou]*$'
-        | grep -v '[aeiou][aeiou]' | sort | uniq -c</b>
+    $ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*[aeoiu][^aeiou]*$' |
+        grep -v '[aeiou][aeiou]' | sort | uniq -c</b>
     
 <b>
 7.0 Find verses in Genesis with the word ‘‘light.’’
@@ -357,4 +358,8 @@ x|y             : x or y (egrep only)
 7.3 Exactly two?
     $ grep 'light.*light' genesis.txt | grep -vc 'light.*light.*light'</b>
     
+    
+<b>Exercise 7. sed (string editor)</b>
+    
+    to be continued...
 </pre>
