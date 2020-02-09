@@ -204,13 +204,13 @@ $ paste genesis.words genesis.nextwords genesis.afternextwords | sort | uniq -c 
 
 <b>Exercise 5. Shell Script</b>
 [trigram.sh]
-    tr 'A-Z' 'a-z' | tr -sc 'a-z' '\012' > $$words 
-    tail +2 $$words > $$nextwords
-    tail +3 $$words > $$next2words
+    tr 'A-Z' 'a-z' | tr -sc 'a-z' '\012' &gt; $$words 
+    tail +2 $$words &gt; $$nextwords
+    tail +3 $$words &gt; $$next2words
     paste $$words $$nextwords $$next2words | sort | uniq -c | sort -nr
     rm $$words $$nextwords $$next2words
 
-<b>$ sh trigram.sh < genesis.txt > new.trigrams</b>
+<b>$ sh trigram.sh &lt; genesis.txt &gt; new.trigrams</b>
 
 
 <b>Exercise 6. grep & egrep</b>
@@ -261,15 +261,88 @@ x|y             : x or y (egrep only)
 -i : ignore case
 
 <b>Grep Exercise</b>
-1. How many uppercase words are there in Genesis? Lowercase?
-2. How many 4-letter words?
-3. Are there any words with no vowels?
-4. Find ‘‘1-syllable’’ words (words with exactly one vowel)
-5. Find ‘‘2-syllable’’ words (words with exactly two vowels)
-6. Some words with two orthographic vowels have only one phonological vowel.
-    Delete words ending with a silent ‘‘e’’ from the 2-syllable list.
-    Delete diphthongs (sequences of two vowels in a row).
-7. Find verses in Genesis with the word ‘‘light.’’
+<b>1. How many uppercase words are there in Genesis? Lowercase?</b>
+<b># by token</b>
+<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -c '^[A-Z]'</b>
+5531
+<b># by type | -u to eliminate duplicates</b>
+<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | sort -u | grep -c '^[A-Z]'</b>
+634
+<b># lowercase by token, we will consider tokens now on for this exercise.</b>
+<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -c '^[^A-Z]'</b>
+32991
+
+<b>2. How many 4-letter words?</b>
+<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep '^....'</b>
+<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep '....$'</b>
+<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep '^....$'</b>
+<b>SOLUTION:</b>
+<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -c '^....$'</b>
+9040
+
+<b>3. Are there any words with no vowels?</b>
+<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*$' | sort | uniq -c</b>
+      1 
+     80 by
+      4 By
+      4 cry
+      4 dry
+      1 fly
+    325 my
+     18 My
+      2 myrrh
+    256 s
+    267 thy
+     11 Thy
+      5 why
+      3 Why
+      
+<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -vi '[aeiou]' | sort | uniq -c</b>
+      1 
+     80 by
+      4 By
+      4 cry
+      4 dry
+      1 fly
+    325 my
+     18 My
+      2 myrrh
+    256 s
+    267 thy
+     11 Thy
+      5 why
+      3 Why
+      
+<b>4. Find ‘‘1-syllable’’ words (words with exactly one vowel)</b>
+<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*$' | sort | uniq -c | sed 5q</b>
+    339 a
+      2 A
+      1 add
+    245 all
+      5 All
+      
+<b>5. Find ‘‘2-syllable’’ words (words with exactly two vowels)</b>
+<b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*[aeoiu][^aeiou]*$' | sort | uniq -c | sed 5q</b>
+      8 Abel
+      3 able
+     59 Abram
+      1 absent
+      1 Accad
+      
+<b>6. Some words with two orthographic vowels have only one phonological vowel.</b>
+    <b>Delete words ending with a silent ‘‘e’’ from the 2-syllable list.</b>
+    <b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*[aeoiu][^aeiou]*$' | grep -v 'ee$' | sort | uniq -c</b>
+    
+    <b>Delete diphthongs (sequences of two vowels in a row).</b>
+    <b>$ tr -sc '[A-Z][a-z]' '\012' &lt; genesis.txt | grep -i '^[^aeiou]*[aeiou][^aeiou]*[aeoiu][^aeiou]*$' | grep -v '[aeiou][aeiou]' | sort | uniq -c</b>
+    
+<b>7. Find verses in Genesis with the word ‘‘light.’’
+    $ grep 'light' genesis.txt
     How many have two or more instances of ‘‘light’’?
-    Three or more? Exactly two?
+    $ grep -c 'light.*light' genesis.txt
+    Three or more?
+    $ grep -c 'light.*light.*light' genesis.txt
+    Exactly two?
+    $ grep 'light.*light' genesis.txt | grep -vc 'light.*light.*light'</b>
+    
 </pre> 
